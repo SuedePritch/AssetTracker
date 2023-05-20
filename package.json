@@ -1,5 +1,5 @@
 {
-  "name": "merngtemplate",
+  "name": "assettracker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SuedePritch/furry-leftover-broccoli.git"
+    "url": "git+https://github.com/SuedePritch/AssetTracker.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SuedePritch/furry-leftover-broccoli/issues"
+    "url": "https://github.com/SuedePritch/AssetTracker/issues"
   },
-  "homepage": "https://github.com/SuedePritch/furry-leftover-broccoli#readme",
+  "homepage": "https://github.com/SuedePritch/AssetTracker#readme",
   "devDependencies": {
     "concurrently": "^5.1.0"
   }
