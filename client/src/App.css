@@ -1,0 +1,26 @@
+:root{
+  --clr-primary-500:hsl(0, 0%, 9%);
+  --clr-accent-500:hsl(0, 0%, 80%);
+
+
+  --navbar-height:8vh;
+  --sidenav-width:2rem;
+}
+*,
+*::before,
+*::after{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.main-content{
+  position: absolute;
+  padding: 0.5rem;
+  top:var(--navbar-height);
+  left:0;
+  height: calc(100vh - var(--navbar-height));
+  width: 100vw;
+  background: var(--clr-accent-500);
+}

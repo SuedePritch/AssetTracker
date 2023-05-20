@@ -1,0 +1,23 @@
+.navbar-container{
+    padding:0 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--clr-primary-500);
+    color: var(--clr-accent-500);
+    height:var(--navbar-height);
+}
+.navbar-title{
+    position: absolute;
+    left:1rem;
+}
+.nav-link{
+    background: none;
+    border:none;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+}
+.nav-link a{
+    color: var(--clr-accent-500);
+    text-decoration: none;
+}
