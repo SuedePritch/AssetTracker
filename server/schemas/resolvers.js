@@ -1,4 +1,4 @@
-const { User, Asset, Category } = require('../models')
+const { User, Asset, SignEvent, Category } = require('../models')
 const { signToken } = require('../utils/auth')
 const { AuthenticationError } = require('apollo-server-express')
 
@@ -16,8 +16,12 @@ const resolvers = {
     },
     allAssets: async (parent) => {
       return Asset.find().populate('category')
+    },
+    allSignEvents: async (parent) => {
+      return SignEvent.find().populate('asset').populate('user')
     }
   },
+
   Mutation: {
     // USER
     addUser: async (parent, args) => {
@@ -49,6 +53,20 @@ const resolvers = {
     addAsset: async (parent, args) => {
       const asset = await Asset.create(args)
       return asset
+    },
+    addSignEvent: async (parent, args) => {
+      const createSignEvent = await SignEvent.create(args)
+      const assetToUpdate = await Asset.findById(args.asset)
+      const updatedAsset = await Asset.findOneAndUpdate(
+        { _id: args.asset },
+        // update the asset with the new signEvent and set the isSignedOut to the opposite of what it was
+        { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: !assetToUpdate.isSignedOut } },
+        { new: true }
+      )
+      console.log(updatedAsset)
+      const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('user')
+
+      return signEvent
     },
     // Category
     addCategory: async (parent, args) => {

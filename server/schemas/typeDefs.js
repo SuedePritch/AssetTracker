@@ -16,8 +16,7 @@ const typeDefs = gql`
         name: String
         description: String
         category: [Category]
-        signedIn: [SignedIn]
-        signedOut: [SignedOut]
+        signEvent: [SignEvent]
         isSignedOut: Boolean
     }
     type Category {
@@ -25,22 +24,13 @@ const typeDefs = gql`
         name: String
         description: String
     }
-    type SignedIn {
+    type SignEvent {
+        _id: ID
+        asset: Asset
         date: String
         user: User
         comments: String
     }
-    type SignedOut {
-        date: String
-        user: User
-        comments: String
-    }
-
-
-
-
-
-
 
 
 
@@ -48,6 +38,7 @@ const typeDefs = gql`
 type Query{
     user: User
     allAssets: [Asset]
+    allSignEvents: [SignEvent]
 }
 type Mutation {
     # USER
@@ -55,6 +46,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
     #Assets
     addAsset(name: String!, description: String!, category: [ID]): Asset
+    addSignEvent(asset: ID!, user: ID!, comments: String): SignEvent
     # Category
     addCategory(name: String!, description: String!): Category
 }

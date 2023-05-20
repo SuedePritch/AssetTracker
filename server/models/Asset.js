@@ -15,40 +15,10 @@ const assetSchema = new Schema(
       ref: 'Category'
     //   required: true
     }],
-    signedIn: [
-      {
-        date: {
-          type: Date,
-          required: true,
-          default: ((Date.now()) + 86400000 * 1)
-        },
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: 'User',
-          required: true
-        },
-        comments: {
-          type: String
-        }
-      }
-    ],
-    signedOut: [
-      {
-        date: {
-          type: Date,
-          required: true,
-          default: ((Date.now()) + 86400000 * 1)
-        },
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: 'User',
-          required: true
-        },
-        comments: {
-          type: String
-        }
-      }
-    ],
+    signInOut: [{
+      type: Schema.Types.ObjectId,
+      ref: 'SignEvent'
+    }],
     isSignedOut: {
       type: Boolean,
       required: true,
