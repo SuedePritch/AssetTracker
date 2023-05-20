@@ -11,6 +11,34 @@ const typeDefs = gql`
         token: ID!
         user: User
     }
+    type Asset {
+        _id: ID
+        name: String
+        description: String
+        category: [Category]
+        signedIn: [SignedIn]
+        signedOut: [SignedOut]
+        isSignedOut: Boolean
+    }
+    type Category {
+        _id: ID
+        name: String
+    }
+    type SignedIn {
+        date: String
+        user: User
+        comments: String
+    }
+    type SignedOut {
+        date: String
+        user: User
+        comments: String
+    }
+
+
+
+
+
 
 
 
@@ -18,11 +46,14 @@ const typeDefs = gql`
 
 type Query{
     user: User
+    allAssets: [Asset]
 }
 type Mutation {
     # USER
     addUser(username: String!, email: String! password: String!): Auth
     login(email: String!, password: String!): Auth
+    #Assets
+    addAsset(name: String!, description: String!, category: [ID]): Asset
 }
 `
 

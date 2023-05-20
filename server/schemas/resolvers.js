@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Asset } = require('../models')
 const { signToken } = require('../utils/auth')
 const { AuthenticationError } = require('apollo-server-express')
 
@@ -13,6 +13,9 @@ const resolvers = {
         })
       }
       throw new AuthenticationError('You need to be logged in! resolvers')
+    },
+    allAssets: async (parent) => {
+      return Asset.find().populate('category')
     }
   },
   Mutation: {
@@ -40,6 +43,12 @@ const resolvers = {
       const token = signToken(user)
 
       return { token, user }
+    },
+
+    // Assets
+    addAsset: async (parent, args) => {
+      const asset = await Asset.create(args)
+      return asset
     }
 
   }
