@@ -1,4 +1,4 @@
-const { User, Asset } = require('../models')
+const { User, Asset, Category } = require('../models')
 const { signToken } = require('../utils/auth')
 const { AuthenticationError } = require('apollo-server-express')
 
@@ -49,8 +49,12 @@ const resolvers = {
     addAsset: async (parent, args) => {
       const asset = await Asset.create(args)
       return asset
+    },
+    // Category
+    addCategory: async (parent, args) => {
+      const category = await Category.create(args)
+      return category
     }
-
   }
 }
 

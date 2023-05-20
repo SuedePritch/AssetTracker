@@ -23,6 +23,7 @@ const typeDefs = gql`
     type Category {
         _id: ID
         name: String
+        description: String
     }
     type SignedIn {
         date: String
@@ -54,6 +55,8 @@ type Mutation {
     login(email: String!, password: String!): Auth
     #Assets
     addAsset(name: String!, description: String!, category: [ID]): Asset
+    # Category
+    addCategory(name: String!, description: String!): Category
 }
 `
 
