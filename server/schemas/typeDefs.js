@@ -16,7 +16,7 @@ const typeDefs = gql`
         name: String
         description: String
         category: [Category]
-        signEvent: [SignEvent]
+        signInOut: [SignEvent]
         isSignedOut: Boolean
     }
     type Category {

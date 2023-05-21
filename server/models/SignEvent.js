@@ -10,7 +10,7 @@ const signEventSchema = new Schema(
     date: {
       type: String,
       required: true,
-      default: ((Date.now()) + 86400000 * 1)
+      default: (Date.now())
     },
     user: {
       type: Schema.Types.ObjectId,

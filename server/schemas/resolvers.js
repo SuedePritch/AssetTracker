@@ -15,7 +15,13 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in! resolvers')
     },
     allAssets: async (parent) => {
-      return Asset.find().populate('category')
+      const assetList = await Asset.find()
+        .populate('category')
+        .populate({
+          path: 'signInOut',
+          populate: { path: 'user', model: 'User' }
+        })
+      return assetList
     },
     allSignEvents: async (parent) => {
       return SignEvent.find().populate('asset').populate('user')
@@ -57,13 +63,12 @@ const resolvers = {
     addSignEvent: async (parent, args) => {
       const createSignEvent = await SignEvent.create(args)
       const assetToUpdate = await Asset.findById(args.asset)
-      const updatedAsset = await Asset.findOneAndUpdate(
+      await Asset.findOneAndUpdate(
         { _id: args.asset },
         // update the asset with the new signEvent and set the isSignedOut to the opposite of what it was
         { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: !assetToUpdate.isSignedOut } },
         { new: true }
       )
-      console.log(updatedAsset)
       const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('user')
 
       return signEvent

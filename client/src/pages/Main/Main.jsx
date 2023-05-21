@@ -1,17 +1,41 @@
 import React from 'react'
+import { useQuery } from '@apollo/client';
+import { fromUnixTime, format } from 'date-fns'
 
-
+import { All_ASSETS } from '../../utils/queries';
 // Component Imports
 import Navbar from '../../components/Navbar/Navbar';
 
 function Main() {
+  let assets;
+  const { loading, data } = useQuery(All_ASSETS);
+  if (loading) return 'Loading...';
+  if (!loading) {
+    assets = data.allAssets;
+  }
+
   return (
-      <div>
-        <Navbar/>
-            <div className='main-content'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum amet maiores voluptatum possimus optio veritatis cupiditate eligendi dicta odio quo, ea reprehenderit, suscipit nemo similique dolores quae ut rem quidem et deleniti neque. Porro rem blanditiis a voluptates! Ea explicabo id beatae sint quibusdam corporis ipsam! Neque ea consectetur sit molestias quod veritatis distinctio consequatur voluptatibus natus molestiae, doloribus minus dolorem iure dicta nesciunt, illum, ab libero ipsam quo cum numquam! Odio, voluptatibus! Praesentium doloribus quaerat sed laudantium ab facilis.</p>
-            </div>
+    <div>
+      <Navbar />
+      <div className='main-content'>
+        {assets.map((asset) => (
+          <div className='asset-card-header' key={asset._id}>
+            <h2>{asset.name}</h2>
+            <h4>{asset.signInOut.map((singleSignEvent) => {
+              const unixTime = new Date(singleSignEvent.date / 1000)
+              const dateHelper = fromUnixTime(unixTime)
+              const date = dateHelper.toLocaleDateString().split('/').join(',')
+              const formattedDate = format(new Date(date), 'yyyy MMM dd')
+              return (
+                <div key={singleSignEvent._id}>
+                  <p>{formattedDate} --- <i>{singleSignEvent.comments} {singleSignEvent.user.username}</i></p>
+                </div>
+              )
+            })}</h4>
+          </div>
+        ))}
       </div>
+    </div >
   )
 }
 
