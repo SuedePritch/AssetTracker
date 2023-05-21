@@ -1,4 +1,4 @@
-const { User, Asset, SignEvent, Category } = require('../models')
+const { User, Person, Department, Role, Asset, SignEvent, Category } = require('../models')
 const { signToken } = require('../utils/auth')
 const { AuthenticationError } = require('apollo-server-express')
 
@@ -14,17 +14,23 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in! resolvers')
     },
+    allPeople: async (parent) => {
+      return Person.find().populate('department').populate('role')
+    },
+    allDepartments: async (parent) => {
+      return Department.find().populate('people')
+    },
     allAssets: async (parent) => {
       const assetList = await Asset.find()
         .populate('category')
         .populate({
           path: 'signInOut',
-          populate: { path: 'user', model: 'User' }
+          populate: { path: 'person', model: 'Person' }
         })
       return assetList
     },
     allSignEvents: async (parent) => {
-      return SignEvent.find().populate('asset').populate('user')
+      return SignEvent.find().populate('asset').populate('person')
     }
   },
 
@@ -54,7 +60,20 @@ const resolvers = {
 
       return { token, user }
     },
-
+    // Person
+    addPerson: async (parent, args) => {
+      const person = await Person.create(args)
+      return person
+    },
+    // Department
+    addDepartment: async (parent, args) => {
+      const department = await Department.create(args)
+      return department
+    },
+    addRole: async (parent, args) => {
+      const role = await Role.create(args)
+      return role
+    },
     // Assets
     addAsset: async (parent, args) => {
       const asset = await Asset.create(args)
@@ -69,8 +88,8 @@ const resolvers = {
         { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: !assetToUpdate.isSignedOut } },
         { new: true }
       )
-      const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('user')
-
+      const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('person')
+      console.log(signEvent)
       return signEvent
     },
     // Category

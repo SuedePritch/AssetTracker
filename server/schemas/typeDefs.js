@@ -11,6 +11,33 @@ const typeDefs = gql`
         token: ID!
         user: User
     }
+    input PersonInput {
+        firstname: String
+        lastname: String
+        email: String
+        phone: String
+        department: ID
+        role: ID
+    }
+    type Person {
+        _id: ID
+        firstname: String
+        lastname: String
+        email: String
+        phone: String
+        department: Department
+        role: User
+    }
+    type Department {
+        _id: ID
+        name: String
+        people: [Person]
+    }
+    type Role {
+        _id: ID
+        name: String
+    }
+
     type Asset {
         _id: ID
         name: String
@@ -28,7 +55,7 @@ const typeDefs = gql`
         _id: ID
         asset: Asset
         date: String
-        user: User
+        person: Person
         comments: String
     }
 
@@ -37,6 +64,9 @@ const typeDefs = gql`
 
 type Query{
     user: User
+    allPeople: [Person]
+    allDepartments: [Department]
+    allRoles: [Role]
     allAssets: [Asset]
     allSignEvents: [SignEvent]
 }
@@ -44,9 +74,14 @@ type Mutation {
     # USER
     addUser(username: String!, email: String! password: String!): Auth
     login(email: String!, password: String!): Auth
+    #Person
+    addPerson(firstname: String!, lastname: String!, email: String!, phone: String!, department: ID!, role: ID!): Person
+    #Department
+    addDepartment(name: String!, people:[PersonInput]): Department
+    addRole(name: String!): Role
     #Assets
     addAsset(name: String!, description: String!, category: [ID]): Asset
-    addSignEvent(asset: ID!, user: ID!, comments: String): SignEvent
+    addSignEvent(asset: ID!, person: ID!, comments: String): SignEvent
     # Category
     addCategory(name: String!, description: String!): Category
 }

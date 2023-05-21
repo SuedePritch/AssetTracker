@@ -1,6 +1,9 @@
 const User = require('./User')
-const Asset = require('./Asset')
-const Category = require('./Category')
-const SignEvent = require('./SignEvent')
+const Asset = require('./AssetModels/Asset')
+const Category = require('./AssetModels/Category')
+const SignEvent = require('./AssetModels/SignEvent')
+const Person = require('./OrganizationModels/Person')
+const Department = require('./OrganizationModels/Department')
+const Role = require('./OrganizationModels/Role')
 
-module.exports = { User, Asset, Category, SignEvent }
+module.exports = { User, Person, Department, Role, Asset, Category, SignEvent }

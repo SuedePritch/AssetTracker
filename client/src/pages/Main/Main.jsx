@@ -25,10 +25,11 @@ function Main() {
               const unixTime = new Date(singleSignEvent.date / 1000)
               const dateHelper = fromUnixTime(unixTime)
               const date = dateHelper.toLocaleDateString().split('/').join(',')
-              const formattedDate = format(new Date(date), 'yyyy MMM dd')
+              const formattedDate = format(new Date(date), 'yyyy MMM dd hh:mm a')
+              console.log(asset._id, singleSignEvent._id)
               return (
                 <div key={singleSignEvent._id}>
-                  <p>{formattedDate} --- <i>{singleSignEvent.comments} {singleSignEvent.user.username}</i></p>
+                  <p>{formattedDate} --- <i>{singleSignEvent.person.firstname}, {singleSignEvent.person.lastname}</i></p>
                 </div>
               )
             })}</h4>

@@ -10,18 +10,23 @@ user {
 `;
 export const All_ASSETS = gql`
 query allAssets {
-    allAssets {
-        _id
-    isSignedOut
+  allAssets {
+    _id
     name
+    description
+    category {
+      description
+      name
+    }
     signInOut {
-      date
-      comments
       _id
-      user {
-        username
+      date
+      person {
+        firstname
+        lastname
       }
     }
+    isSignedOut
   }
 }
 `;

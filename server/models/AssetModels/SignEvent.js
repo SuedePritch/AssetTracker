@@ -12,9 +12,9 @@ const signEventSchema = new Schema(
       required: true,
       default: (Date.now())
     },
-    user: {
+    person: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'Person',
       required: true
     },
     comments: {
