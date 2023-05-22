@@ -30,3 +30,22 @@ query allAssets {
   }
 }
 `;
+export const ALL_PEOPLE = gql`
+query allPeople {
+  allPeople {
+    _id
+    firstname
+    lastname
+    email
+    phone
+    department {
+      _id
+      name
+    }
+    role {
+      _id
+      name
+    }
+  }
+}
+`;

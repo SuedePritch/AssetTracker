@@ -15,10 +15,12 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in! resolvers')
     },
     allPeople: async (parent) => {
-      return Person.find().populate('department').populate('role')
+      const people = await Person.find().populate('department').populate('role')
+      return people
     },
     allDepartments: async (parent) => {
-      return Department.find().populate('people')
+      const department = await Department.find().populate('people')
+      return department
     },
     allAssets: async (parent) => {
       const assetList = await Asset.find()
@@ -63,11 +65,25 @@ const resolvers = {
     // Person
     addPerson: async (parent, args) => {
       const person = await Person.create(args)
-      return person
+      if (args.department) {
+        await Department.findOneAndUpdate(
+          { _id: args.department },
+          { $push: { people: person._id } },
+          { new: true }
+        )
+        return person
+      }
     },
     // Department
     addDepartment: async (parent, args) => {
       const department = await Department.create(args)
+      if (args.people.length > 0) {
+        await Person.updateMany(
+          { _id: { $in: args.people } },
+          { $set: { department: department._id } },
+          { new: true }
+        )
+      }
       return department
     },
     addRole: async (parent, args) => {
@@ -80,17 +96,28 @@ const resolvers = {
       return asset
     },
     addSignEvent: async (parent, args) => {
-      const createSignEvent = await SignEvent.create(args)
       const assetToUpdate = await Asset.findById(args.asset)
-      await Asset.findOneAndUpdate(
-        { _id: args.asset },
-        // update the asset with the new signEvent and set the isSignedOut to the opposite of what it was
-        { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: !assetToUpdate.isSignedOut } },
-        { new: true }
-      )
-      const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('person')
-      console.log(signEvent)
-      return signEvent
+      if (!assetToUpdate.isSignedOut && args.person) {
+        const createSignEvent = await SignEvent.create(args)
+        await Asset.findOneAndUpdate(
+          { _id: args.asset },
+          { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: true } },
+          { new: true }
+        )
+        const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('person')
+        return signEvent
+      } else if (assetToUpdate.isSignedOut) {
+        const createSignEvent = await SignEvent.create(args)
+        await Asset.findOneAndUpdate(
+          { _id: args.asset },
+          { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: false } },
+          { new: true }
+        )
+        const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('person')
+        return signEvent
+      } else {
+        throw new AuthenticationError('Person is required to sign out asset')
+      }
     },
     // Category
     addCategory: async (parent, args) => {

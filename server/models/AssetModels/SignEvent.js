@@ -14,8 +14,7 @@ const signEventSchema = new Schema(
     },
     person: {
       type: Schema.Types.ObjectId,
-      ref: 'Person',
-      required: true
+      ref: 'Person'
     },
     comments: {
       type: String

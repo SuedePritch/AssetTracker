@@ -1,40 +1,34 @@
 import React from 'react'
 import { useQuery } from '@apollo/client';
-import { fromUnixTime, format } from 'date-fns'
 
-import { All_ASSETS } from '../../utils/queries';
 // Component Imports
 import Navbar from '../../components/Navbar/Navbar';
+import { ALL_PEOPLE } from '../../utils/queries';
+// import Assets from '../Assets/Assets';
 
 function Main() {
-  let assets;
-  const { loading, data } = useQuery(All_ASSETS);
+  let people;
+  const { loading, data } = useQuery(ALL_PEOPLE);
   if (loading) return 'Loading...';
   if (!loading) {
-    assets = data.allAssets;
+    people = data.allPeople
+    console.log(people)
   }
 
   return (
     <div>
       <Navbar />
       <div className='main-content'>
-        {assets.map((asset) => (
-          <div className='asset-card-header' key={asset._id}>
-            <h2>{asset.name}</h2>
-            <h4>{asset.signInOut.map((singleSignEvent) => {
-              const unixTime = new Date(singleSignEvent.date / 1000)
-              const dateHelper = fromUnixTime(unixTime)
-              const date = dateHelper.toLocaleDateString().split('/').join(',')
-              const formattedDate = format(new Date(date), 'yyyy MMM dd hh:mm a')
-              console.log(asset._id, singleSignEvent._id)
-              return (
-                <div key={singleSignEvent._id}>
-                  <p>{formattedDate} --- <i>{singleSignEvent.person.firstname}, {singleSignEvent.person.lastname}</i></p>
-                </div>
-              )
-            })}</h4>
+        {/* <Assets /> */}
+        {people.map((person) => (
+          <div key={person._id}>
+            <h3>{person.firstname} {person.lastname}</h3>
+            <p>{person.email}</p>
+            <p>{person.phone}</p>
+            <p>{person.role.name} {person.department.name}</p>
           </div>
         ))}
+
       </div>
     </div >
   )
