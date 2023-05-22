@@ -15,7 +15,8 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in! resolvers')
     },
     allPeople: async (parent) => {
-      const people = await Person.find().populate('department').populate('role')
+      const people = await Person.find().populate('department').populate('role').populate('assets')
+      console.log(people)
       return people
     },
     allDepartments: async (parent) => {
@@ -96,6 +97,7 @@ const resolvers = {
       return asset
     },
     addSignEvent: async (parent, args) => {
+      //  sign out event, update asset, add asset to person
       const assetToUpdate = await Asset.findById(args.asset)
       if (!assetToUpdate.isSignedOut && args.person) {
         const createSignEvent = await SignEvent.create(args)
@@ -104,13 +106,24 @@ const resolvers = {
           { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: true } },
           { new: true }
         )
+        await Person.findOneAndUpdate(
+          { _id: args.person },
+          { $push: { assets: args.asset } },
+          { new: true }
+        )
         const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('person')
         return signEvent
+        // signin asset, update asset with sign event, remove asset from person
       } else if (assetToUpdate.isSignedOut) {
         const createSignEvent = await SignEvent.create(args)
         await Asset.findOneAndUpdate(
           { _id: args.asset },
           { $push: { signInOut: createSignEvent._id }, $set: { isSignedOut: false } },
+          { new: true }
+        )
+        await Person.findOneAndUpdate(
+          { _id: args.person },
+          { $pull: { assets: args.asset } },
           { new: true }
         )
         const signEvent = await SignEvent.find({ _id: createSignEvent._id }).populate('asset').populate('person')

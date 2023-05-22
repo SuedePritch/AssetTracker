@@ -33,7 +33,13 @@ const personSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Role',
       required: false
-    }
+    },
+    assets: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Asset'
+      }
+    ]
   },
   // set this to use virtual below
   {

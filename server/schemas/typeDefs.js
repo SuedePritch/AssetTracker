@@ -19,6 +19,7 @@ const typeDefs = gql`
         phone: String
         department: Department
         role: Role
+        assets: [Asset]
     }
     type Department {
         _id: ID

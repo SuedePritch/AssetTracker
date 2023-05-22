@@ -46,6 +46,11 @@ query allPeople {
       _id
       name
     }
+    assets {
+      _id
+      name
+      description
+  }
   }
 }
 `;

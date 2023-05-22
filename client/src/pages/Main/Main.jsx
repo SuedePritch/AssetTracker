@@ -26,11 +26,16 @@ function Main() {
             <p>{person.email}</p>
             <p>{person.phone}</p>
             <p>{person.role.name} {person.department.name}</p>
+            {person.assets.map((asset) => (
+              <div key={asset._id}>
+                <p>{asset.name}</p>
+
+              </div>
+            ))}
           </div>
         ))}
-
       </div>
-    </div >
+    </div>
   )
 }
 
