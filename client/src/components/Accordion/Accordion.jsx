@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './accordion.scss'
-import QRCode from '../QRCode/QRCode'
 
 function Accordion({ data }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -56,7 +55,7 @@ function Accordion({ data }) {
 
     return (
         <div className="accordion">
-            <QRCode qrCodeImageData={data.qrcode} />
+
             <div className="accordion-header" onClick={toggleAccordion}>
                 {/* left column */}
                 <div>

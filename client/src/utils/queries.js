@@ -29,6 +29,18 @@ query allAssets {
   }
 }
 `;
+export const SINGLE_ASSET = gql`
+query singleAsset($id:ID!) {
+  singleAsset(_id:$id) {
+    _id
+    name
+    description
+    isSignedOut
+    qrcode
+}
+}
+`;
+
 export const ALL_PEOPLE = gql`
 query allPeople {
   allPeople {

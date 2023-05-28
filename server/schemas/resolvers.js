@@ -17,7 +17,7 @@ const resolvers = {
     },
     allPeople: async (parent) => {
       const people = await Person.find()
-        .populate('department')
+        .populate('department')``
         .populate('role')
         .populate('assets')
         .sort({ lastname: 1 })
@@ -47,6 +47,11 @@ const resolvers = {
         })
       return assetList
     },
+    singleAsset: async (parent, { _id }) => {
+      const asset = await Asset.findOne({ _id })
+      return asset
+    },
+
     allSignEvents: async (parent) => {
       return SignEvent.find().populate('asset').populate('person')
     }

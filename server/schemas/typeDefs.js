@@ -106,6 +106,7 @@ type Query{
     allDepartments: [Department]
     allRoles: [Role]
     allAssets: [Asset]
+    singleAsset(_id:ID!): Asset
     allSignEvents: [SignEvent]
 }
 type Mutation {
