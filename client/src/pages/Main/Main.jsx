@@ -3,7 +3,9 @@ import { useQuery } from '@apollo/client';
 
 // Component Imports
 import Navbar from '../../components/Navbar/Navbar';
+import Accordion from '../../components/Accordion/Accordion';
 import { ALL_PEOPLE } from '../../utils/queries';
+// import { ALL_ASSETS } from '../../utils/queries';
 // import Assets from '../Assets/Assets';
 
 function Main() {
@@ -19,21 +21,10 @@ function Main() {
     <div>
       <Navbar />
       <div className='main-content'>
-        {/* <Assets /> */}
         {people.map((person) => (
-          <div key={person._id}>
-            <h3>{person.firstname} {person.lastname}</h3>
-            <p>{person.email}</p>
-            <p>{person.phone}</p>
-            <p>{person.role.name} {person.department.name}</p>
-            {person.assets.map((asset) => (
-              <div key={asset._id}>
-                <p>{asset.name}</p>
-
-              </div>
-            ))}
-          </div>
+          < Accordion data={person} key={person._id} />
         ))}
+
       </div>
     </div>
   )

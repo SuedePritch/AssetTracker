@@ -1,7 +1,8 @@
+const qrcode = require('qrcode')
 const { User, Person, Department, Role, Asset, SignEvent, Category } = require('../models')
 const { signToken } = require('../utils/auth')
 const { AuthenticationError } = require('apollo-server-express')
-
+const domain = 'http://localhost:3000'
 const resolvers = {
   Query: {
     // USER
@@ -12,15 +13,26 @@ const resolvers = {
           _id: context.user._id
         })
       }
-      throw new AuthenticationError('You need to be logged in! resolvers')
+      throw new AuthenticationError('You need to be logged in!')
     },
     allPeople: async (parent) => {
-      const people = await Person.find().populate('department').populate('role').populate('assets')
-      console.log(people)
+      const people = await Person.find()
+        .populate('department')
+        .populate('role')
+        .populate('assets')
+        .sort({ lastname: 1 })
       return people
     },
     allDepartments: async (parent) => {
-      const department = await Department.find().populate('people')
+      const department = await Department.find()
+        .populate({
+          path: 'manager',
+          populate: { path: 'role' }
+        })
+        .populate({
+          path: 'people',
+          populate: { path: 'role' }
+        })
       return department
     },
     allAssets: async (parent) => {
@@ -28,7 +40,10 @@ const resolvers = {
         .populate('category')
         .populate({
           path: 'signInOut',
-          populate: { path: 'person', model: 'Person' }
+          populate: {
+            path: 'person',
+            model: 'Person'
+          }
         })
       return assetList
     },
@@ -38,6 +53,17 @@ const resolvers = {
   },
 
   Mutation: {
+    // Seed Database
+    seedDatabase: async (parent, args) => {
+      const seedRoles = await Role.create(args.roles)
+      const seedCategories = await Category.create(args.categories)
+      const seedDepartments = await Department.create(args.departments)
+      const seedAssets = await Asset.create(args.assets)
+      const seedPeople = await Person.create(args.people)
+      const seedSignEvent = await SignEvent.create(args.signEvent)
+      return { seedAssets, seedCategories, seedDepartments, seedRoles, seedPeople, seedSignEvent }
+    },
+
     // USER
     addUser: async (parent, args) => {
       const user = await User.create(args)
@@ -75,6 +101,12 @@ const resolvers = {
         return person
       }
     },
+    // TODO: update department with new people
+    bulkCreatePeople: async (parent, args) => {
+      console.log('doesnt update department')
+      const people = await Person.create(args.people)
+      return people
+    },
     // Department
     addDepartment: async (parent, args) => {
       const department = await Department.create(args)
@@ -87,13 +119,38 @@ const resolvers = {
       }
       return department
     },
+    addPeopleToDepartment: async (parent, args) => {
+      const department = await Department.findOneAndUpdate(
+        { _id: args.department },
+        { $push: { people: { $each: args.people } } },
+        { new: true }
+      )
+      return department
+    },
+    removePeopleFromDepartment: async (parent, args) => {
+      const department = await Department.findOneAndUpdate(
+        { _id: args.department },
+        { $pull: { people: { $in: args.people } } },
+        { new: true }
+      )
+      return department
+    },
+
+    // Role
     addRole: async (parent, args) => {
       const role = await Role.create(args)
       return role
     },
     // Assets
     addAsset: async (parent, args) => {
-      const asset = await Asset.create(args)
+      const createAsset = await Asset.create(args)
+      const qrcodeUrl = `${domain}/asset/${createAsset._id}`
+      const qrcodeImage = await qrcode.toDataURL(qrcodeUrl)
+      const asset = await Asset.findOneAndUpdate(
+        { _id: createAsset._id },
+        { $set: { qrcode: qrcodeImage } },
+        { new: true }
+      )
       return asset
     },
     addSignEvent: async (parent, args) => {

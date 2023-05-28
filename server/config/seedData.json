@@ -1,0 +1,333 @@
+{
+    "roles": [
+        {
+            "name": "CEO",
+            "_id": "646c1a4a116d3eb5883cac57"
+        },
+        {
+            "name": "CFO",
+            "_id": "646c1a6d116d3eb5883cac59"
+        },
+        {
+            "name": "CTO",
+            "_id": "646c1a89116d3eb5883cac5b"
+        },
+        {
+            "name": "supervisor",
+            "_id": "646c181e2e91f5ea46ceaa7d"
+        },
+        {
+            "name": "manager",
+            "_id": "646c179db4661e41173160d6"
+        },
+        {
+            "name": "team lead",
+            "_id": "646c18389e6e67aeb559597e"
+        },
+        {
+            "name": "team member",
+            "_id": "646c184e9e6e67aeb5595980"
+        }
+    ],
+    "departments": [
+        {
+            "name": "sales",
+            "_id": "646c192c0c11c46138fc1a2b",
+            "people": [
+                "646d72d3541ddee3208616ae",
+                "646d72d3541ddee3208616ad"
+            ],
+            "manager": "646d72d3541ddee3208616ad"
+        },
+        {
+            "name": "marketing",
+            "_id": "646c199c0c11c46138fc1a2f",
+            "people": [
+                "646d72d3541ddee3208616b0",
+                "646d72d3541ddee3208616af"
+            ],
+            "manager": "646d72d3541ddee3208616af"
+        },
+        {
+            "name": "development",
+            "_id": "646c19e53970f2ec774f4e0f",
+            "people": [
+                "646d72d3541ddee3208616a9",
+                "646d72d3541ddee3208616aa",
+                "646d72d3541ddee3208616ac",
+                "646d72d3541ddee3208616ab"
+            ],
+            "manager": "646d72d3541ddee3208616a8"
+        },
+        {
+            "name": "executive",
+            "_id": "646c1a173970f2ec774f4e13",
+            "people": [
+                "646d72d3541ddee3208616a6",
+                "646d72d3541ddee3208616a8",
+                "646d72d3541ddee3208616a7"
+            ],
+            "manager": "646d72d3541ddee3208616a6"
+        }
+    ],
+    "categories": [
+        {
+            "name": "laptop",
+            "description": "employee laptop",
+            "_id": "646918168a32cc11f65d4584"
+        },
+        {
+            "name": "desktop",
+            "description": "employee desktop",
+            "_id": "646c1b871a5b2f619c3841e3"
+        },
+        {
+            "name": "mobile",
+            "description": "employee mobile",
+            "_id": "646c1bbf1a5b2f619c3841e5"
+        },
+        {
+            "name": "accessories",
+            "description": "employee accessories",
+            "_id": "646c1bf91a5b2f619c3841e7"
+        },
+        {
+            "name": "software",
+            "description": "employee software",
+            "_id": "646c1c0a1a5b2f619c3841e9"
+        },
+        {
+            "name": "other",
+            "description": "employee other",
+            "_id": "646c1c1b1a5b2f619c3841eb"
+        }
+    ],
+    "assets": [
+        {
+            "name": "Laptop #1",
+            "description": "Dell XPS 13",
+            "category": "646918168a32cc11f65d4584",
+            "_id": "646c28c1c55f3f4e32f0b46b",
+            "signInOut": "6472542b3302f2fc4e6b3c93",
+            "isSignedOut": true
+        },
+        {
+            "name": "Laptop #2",
+            "description": "MacBook Air",
+            "category": "646918168a32cc11f65d4584",
+            "_id": "646c28d0c55f3f4e32f0b46d"
+        },
+        {
+            "name": "Laptop #3",
+            "description": "HP Spectre x360",
+            "category": "646918168a32cc11f65d4584",
+            "_id": "646c28dfc55f3f4e32f0b46f"
+        },
+        {
+            "name": "Laptop #4",
+            "description": "Lenovo ThinkPad X1 Carbon",
+            "category": "646918168a32cc11f65d4584",
+            "_id": "646c28efc55f3f4e32f0b471"
+        },
+        {
+            "name": "Laptop #5",
+            "description": "Microsoft Surface Laptop 4",
+            "category": "646918168a32cc11f65d4584",
+            "_id": "646c2905c55f3f4e32f0b473"
+        },
+        {
+            "name": "Desktop #1",
+            "description": "HP Pavilion",
+            "category": "646c1b871a5b2f619c3841e3",
+            "_id": "646c291ac55f3f4e32f0b475"
+        },
+        {
+            "name": "Desktop #2",
+            "description": "Dell XPS Tower",
+            "category": "646c1b871a5b2f619c3841e3",
+            "_id": "646c292ec55f3f4e32f0b477"
+        },
+        {
+            "name": "Mobile #1",
+            "description": "iPhone 12",
+            "category": "646c1bbf1a5b2f619c3841e5",
+            "_id": "646c2941c55f3f4e32f0b479",
+            "signInOut": "6472542b3302f2fc4e6b3c95",
+            "isSignedOut": true
+        },
+        {
+            "name": "Mobile #2",
+            "description": "Samsung Galaxy S21",
+            "category": "646c1bbf1a5b2f619c3841e5",
+            "_id": "646c294fc55f3f4e32f0b47b"
+        },
+        {
+            "name": "Mobile #3",
+            "description": "Google Pixel 5",
+            "category": "646c1bbf1a5b2f619c3841e5",
+            "_id": "646c295ec55f3f4e32f0b47d"
+        },
+        {
+            "name": "Wireless Mouse",
+            "description": "Logitech Wireless Mouse",
+            "category": "646c1bf91a5b2f619c3841e7",
+            "_id": "646c2991c55f3f4e32f0b47f"
+        },
+        {
+            "name": "USB Hub",
+            "description": "Anker USB-C Hub",
+            "category": "646c1bf91a5b2f619c3841e7",
+            "_id": "646c299fc55f3f4e32f0b481"
+        },
+        {
+            "name": "Software #1",
+            "description": "Adobe Photoshop",
+            "category": "646c1c0a1a5b2f619c3841e9",
+            "_id": "646c29adc55f3f4e32f0b483"
+        },
+        {
+            "name": "Software #2",
+            "description": "Microsoft Office 365",
+            "category": "646c1c0a1a5b2f619c3841e9",
+            "_id": "646c29c0c55f3f4e32f0b485"
+        },
+        {
+            "name": "Headphones",
+            "description": "Bose Noise Cancelling Headphones 700",
+            "category": "646c1c1b1a5b2f619c3841eb",
+            "_id": "646c29d5c55f3f4e32f0b487",
+            "signInOut": "6472542b3302f2fc4e6b3c94",
+            "isSignedOut": true
+        },
+        {
+            "name": "GoPro",
+            "description": "GoPro HERO9 Black",
+            "category": "646c1c1b1a5b2f619c3841eb",
+            "_id": "646c29e5c55f3f4e32f0b489"
+        }
+    ],
+    "people": [
+        {
+            "_id": "646d72d3541ddee3208616a6",
+            "firstname": "John",
+            "lastname": "Doe",
+            "email": "johndoe@example.com",
+            "phone": "1234567890",
+            "department": "646c1a173970f2ec774f4e13",
+            "role": "646c1a4a116d3eb5883cac57"
+        },
+        {
+            "_id": "646d72d3541ddee3208616a7",
+            "firstname": "Jane",
+            "lastname": "Smith",
+            "email": "janesmith@example.com",
+            "phone": "9826543210",
+            "department": "646c1a173970f2ec774f4e13",
+            "role": "646c1a6d116d3eb5883cac59"
+        },
+        {
+            "_id": "646d72d3541ddee3208616a8",
+            "firstname": "Alex",
+            "lastname": "Johnson",
+            "email": "alexjohnson@example.com",
+            "phone": "2502828884",
+            "department": "646c1a173970f2ec774f4e13",
+            "role": "646c1a89116d3eb5883cac5b"
+        },
+        {
+            "_id": "646d72d3541ddee3208616a9",
+            "firstname": "Sam",
+            "lastname": "Brown",
+            "email": "sambrown@example.com",
+            "phone": "9876863210",
+            "department": "646c19e53970f2ec774f4e0f",
+            "role": "646c181e2e91f5ea46ceaa7d"
+        },
+        {
+            "_id": "646d72d3541ddee3208616aa",
+            "firstname": "Emily",
+            "lastname": "Davis",
+            "email": "emilydavis@example.com",
+            "phone": "9876323210",
+            "department": "646c19e53970f2ec774f4e0f",
+            "role": "646c179db4661e41173160d6"
+        },
+        {
+            "_id": "646d72d3541ddee3208616ab",
+            "firstname": "Michael",
+            "lastname": "Wilson",
+            "email": "michaelwilson@example.com",
+            "phone": "9876542310",
+            "department": "646c19e53970f2ec774f4e0f",
+            "role": "646c18389e6e67aeb559597e"
+        },
+        {
+            "_id": "646d72d3541ddee3208616ac",
+            "firstname": "Sarah",
+            "lastname": "Lee",
+            "email": "sarahlee@example.com",
+            "phone": "2508873644",
+            "department": "646c19e53970f2ec774f4e0f",
+            "role": "646c184e9e6e67aeb5595980",
+            "assets": "646c29d5c55f3f4e32f0b487"
+        },
+        {
+            "_id": "646d72d3541ddee3208616ad",
+            "firstname": "Mark",
+            "lastname": "Anderson",
+            "email": "markanderson@example.com",
+            "phone": "2507723434",
+            "department": "646c192c0c11c46138fc1a2b",
+            "role": "646c18389e6e67aeb559597e",
+            "assets": "646c2941c55f3f4e32f0b479"
+        },
+        {
+            "_id": "646d72d3541ddee3208616ae",
+            "firstname": "Laura",
+            "lastname": "Thompson",
+            "email": "laurathompson@example.com",
+            "phone": "8072283383",
+            "department": "646c192c0c11c46138fc1a2b",
+            "role": "646c184e9e6e67aeb5595980"
+        },
+        {
+            "_id": "646d72d3541ddee3208616af",
+            "firstname": "Ryan",
+            "lastname": "Miller",
+            "email": "ryanmiller@example.com",
+            "phone": "2506177722",
+            "department": "646c199c0c11c46138fc1a2f",
+            "role": "646c18389e6e67aeb559597e"
+        },
+        {
+            "_id": "646d72d3541ddee3208616b0",
+            "firstname": "Olivia",
+            "lastname": "Garcia",
+            "email": "oliviagarcia@example.com",
+            "phone": "8772227377",
+            "department": "646c199c0c11c46138fc1a2f",
+            "role": "646c184e9e6e67aeb5595980",
+            "assets": "646c28c1c55f3f4e32f0b46b"
+        }
+    ],
+    "signEvent": [
+        {
+            "_id": "6472542b3302f2fc4e6b3c93",
+            "asset": "646c28c1c55f3f4e32f0b46b",
+            "date": "1684741910",
+            "person": "646d72d3541ddee3208616b0"
+        },
+        {
+            "_id": "6472542b3302f2fc4e6b3c94",
+            "asset": "646c29d5c55f3f4e32f0b487",
+            "date": "1684740910",
+            "person": "646d72d3541ddee3208616ac"
+        },
+        {
+            "_id": "6472542b3302f2fc4e6b3c95",
+            "asset": "646c2941c55f3f4e32f0b479",
+            "date": "1684741910",
+            "person": "646d72d3541ddee3208616ad"
+        }
+    ]
+}

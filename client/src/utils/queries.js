@@ -8,25 +8,24 @@ user {
     }
 }
 `;
-export const All_ASSETS = gql`
+export const ALL_ASSETS = gql`
 query allAssets {
   allAssets {
-    _id
-    name
-    description
-    category {
-      description
-      name
-    }
     signInOut {
-      _id
-      date
       person {
         firstname
         lastname
       }
+      date
+      _id
+    }
+    _id
+    category {
+      name
     }
     isSignedOut
+    name
+    qrcode
   }
 }
 `;
@@ -54,3 +53,26 @@ query allPeople {
   }
 }
 `;
+
+export const ALL_DEPARTMENTS= gql`
+query allDepartments {
+  allDepartments {
+    _id
+    name
+    manager {
+      firstname
+      lastname
+      role{
+        name
+      }
+    }
+    people {
+      _id
+      firstname
+      lastname
+      role {
+        name
+    }
+    }
+  }
+}`

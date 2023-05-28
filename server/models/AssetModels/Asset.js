@@ -23,6 +23,9 @@ const assetSchema = new Schema(
       type: Boolean,
       required: true,
       default: false
+    },
+    qrcode: {
+      type: String
     }
   },
   // set this to use virtual below

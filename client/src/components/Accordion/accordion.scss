@@ -1,0 +1,46 @@
+.accordion {
+    min-width: 390px;
+    margin-bottom: 0.25rem;
+}
+
+.accordion>* {
+    padding: 0.5rem;
+}
+
+.accordion-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.25rem;
+    background: hsla(0, 0%, 0%, 0.1);
+}
+
+.accordion-list1 {
+    list-style: none;
+}
+
+.accordion-list1 li::before {
+    content: "• ";
+    color: black;
+    font-size: large;
+
+}
+
+
+
+
+
+
+
+
+.span2 {
+    grid-column: span 2;
+}
+
+.smalltext {
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.text-align-right {
+    text-align: right;
+}
