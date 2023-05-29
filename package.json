@@ -21,5 +21,8 @@
   "homepage": "https://github.com/SuedePritch/AssetTracker#readme",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "voca": "^1.4.1"
   }
 }

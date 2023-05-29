@@ -7,6 +7,7 @@ function Accordion({ data }) {
         setIsExpanded(!isExpanded);
     };
 
+    let url;
     let title;
     let content1;
     let content2;
@@ -15,6 +16,7 @@ function Accordion({ data }) {
     let list1;
     switch (data.__typename) {
         case 'Person':
+            url = `/person/${data._id}`
             title = `${data.lastname}, ${data.firstname}`
             content1 = data.department.name
             content2 = data.role.name
@@ -23,6 +25,7 @@ function Accordion({ data }) {
             list1 = data.assets
             break;
         case 'Asset':
+            url = `/asset/${data._id}`
             title = data.name
             content1 = data.description
             content2 = data.category[0].name
@@ -30,6 +33,7 @@ function Accordion({ data }) {
             list1 = data.signInOut
             break;
         case 'Department':
+            url = `/department/${data._id}`
             title = data.name
             content1 = `${data.manager.lastname}, ${data.manager.firstname}`
             content2 = data.manager.role.name
@@ -59,7 +63,7 @@ function Accordion({ data }) {
             <div className="accordion-header" onClick={toggleAccordion}>
                 {/* left column */}
                 <div>
-                    <h5>{title.toUpperCase()}</h5>
+                    <h5><a href={url} className='no-link dark'>{title.toUpperCase()}</a></h5>
                     <p className='smalltext'>{content1} - {content2}</p>
                 </div>
                 {/* right column */}

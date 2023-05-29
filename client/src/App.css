@@ -28,7 +28,20 @@
   background: var(--clr-accent-500);
 }
 
+.link-button {
+  margin: 0.25em;
+  padding: 1rem;
+  border: 2px solid black;
+}
+
 .no-link {
   text-decoration: none;
+}
+
+.light {
   color: var(--clr-accent-500);
+}
+
+.dark {
+  color: var(--clr-primary-500);
 }

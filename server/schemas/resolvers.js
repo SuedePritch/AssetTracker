@@ -17,7 +17,7 @@ const resolvers = {
     },
     allPeople: async (parent) => {
       const people = await Person.find()
-        .populate('department')``
+        .populate('department')
         .populate('role')
         .populate('assets')
         .sort({ lastname: 1 })

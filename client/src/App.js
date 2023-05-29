@@ -37,7 +37,7 @@ function App() {
           {/* Main Landing Page */}
           <Route path='/' element={<Main />} />
           <Route path='/assets' element={<Assets />} />
-          <Route path='/assets/:assetId' element={<SingleAsset />} />
+          <Route path='/asset/:assetId' element={<SingleAsset />} />
 
           <Route path='/departments' element={<Departments />} />
 

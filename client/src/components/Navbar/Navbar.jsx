@@ -25,7 +25,7 @@ function Navbar() {
     return (
         <div>
             <div className="navbar-container">
-                <h2 className='navbar-title'><a className='no-link' href="/">Asset Tracker</a></h2>
+                <h2 className='navbar-title'><a className='no-link light' href="/">Asset Tracker</a></h2>
                 {loggedIn ? <button className='nav-link' onClick={signout}><Link to="/">Logout</Link></button>
                     :
                     <div>
