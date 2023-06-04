@@ -41,6 +41,17 @@ query singleAsset($id:ID!) {
 }
 `;
 
+export const ALL_CATEGORIES = gql`
+query allCategories {
+  allCategories {
+    _id
+    name
+    description
+  }
+}
+`;
+
+
 export const ALL_PEOPLE = gql`
 query allPeople {
   allPeople {

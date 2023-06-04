@@ -24,3 +24,11 @@ export const ADD_USER = gql`
         }
     }
 `
+export const ADD_ASSET = gql`
+    mutation addAsset($name: String!, $description: String!, $category: [ID]) {
+        addAsset(name: $name, description: $description, category: $category) {
+    _id
+    name
+  }
+    }
+`

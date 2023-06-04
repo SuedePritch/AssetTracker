@@ -51,6 +51,10 @@ const resolvers = {
       const asset = await Asset.findOne({ _id })
       return asset
     },
+    allCategories: async (parent) => {
+      const categories = await Category.find()
+      return categories
+    },
 
     allSignEvents: async (parent) => {
       return SignEvent.find().populate('asset').populate('person')
