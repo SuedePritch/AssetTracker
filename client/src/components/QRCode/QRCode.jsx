@@ -29,6 +29,9 @@ const QRCode = ({ qrCodeImageData, filename }) => {
         const labelX = qrcodeImage.width;
         const labelY = 0;
         ctx.drawImage(labelImage, labelX, labelY, labelWidth, labelHeight);
+        ctx.font = 'bold 16px Arial';
+        ctx.fillStyle = 'black';
+        ctx.fillText(v.titleCase(filename), labelX + 10, labelY + 25);
 
         const qrcodeWithLabel = canvas.toDataURL();
         return qrcodeWithLabel;

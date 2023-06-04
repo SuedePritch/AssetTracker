@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@apollo/client';
 // import { fromUnixTime, format } from 'date-fns'
 
 import { ALL_ASSETS } from '../../utils/queries';
 import Navbar from '../../components/Navbar/Navbar';
+
+import Modal from '../../components/Modal/Modal';
+import AddAsset from '../../components/Forms/AddAsset';
 import Accordion from '../../components/Accordion/Accordion';
 
 function Assets() {
+    const [isOpen, setIsOpen] = useState(false)
+
+    const openModal = () => {
+        setIsOpen(true)
+    }
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+
     let assets;
     const { loading, data } = useQuery(ALL_ASSETS);
     if (loading) return 'Loading...';
@@ -17,6 +30,8 @@ function Assets() {
         <>
             <Navbar />
             <div className='main-content'>
+                <button onClick={openModal}>Add Asset</button>
+                <Modal formComponent={<AddAsset />} isOpen={isOpen} onClose={closeModal} />
                 {assets.map((asset) => (
                     < Accordion data={asset} key={asset._id} />
                 ))}

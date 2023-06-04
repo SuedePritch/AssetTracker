@@ -20,7 +20,8 @@ function SingleAsset() {
         <>
             <Navbar />
             <div className="main-content">
-                <h1>{asset.name}</h1>
+
+                <h1>{asset.name.toUpperCase()}</h1>
                 <h4>{asset.isSignedOut.toString()}</h4>
                 {asset.qrcode && <QRCode qrCodeImageData={asset.qrcode} filename={asset.name} />}
             </div>
