@@ -57,7 +57,7 @@ function AddAsset() {
                         ))}
                     </select>
                 </div>
-                <button className='form-field form-field-button add-asset ' type='submit' >Login </button>
+                <button className='form-field form-field-button add-asset ' type='submit' >Add Asset</button>
             </form>
         </>
     )

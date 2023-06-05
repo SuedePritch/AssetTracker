@@ -1,6 +1,9 @@
 :root {
-  --clr-primary-500: hsl(0, 0%, 9%);
-  --clr-accent-500: hsl(0, 0%, 80%);
+  --clr-primary-500: hsl(0, 0%, 3%);
+  --clr-accent-500: hsl(0, 0%, 96%);
+  --clr-success: hsl(120, 100%, 25%);
+  --clr-warning: hsl(60, 100%, 50%);
+  --clr-danger: hsl(0, 100%, 50%);
 
 
   --navbar-height: 60px;

@@ -13,6 +13,7 @@ import Signup from './pages/Signup/Signup'
 import Main from './pages/Main/Main';
 import Assets from './pages/Assets/Assets';
 import SingleAsset from './pages/Assets/SingleAsset';
+import People from './pages/People/People';
 import Departments from './pages/Departments/Departments';
 
 // APOLLO CONFIG
@@ -36,11 +37,13 @@ function App() {
 
           {/* Main Landing Page */}
           <Route path='/' element={<Main />} />
+          {/* Assets */}
           <Route path='/assets' element={<Assets />} />
           <Route path='/asset/:assetId' element={<SingleAsset />} />
-
+          {/* Departments */}
           <Route path='/departments' element={<Departments />} />
-
+          {/* People */}
+          <Route path='/people' element={<People />}/>
           {/* Wildcard/404 Routes - Needs to stay at the bottom */}
           <Route path='*'element={<h1 className='display-2'>Wrong page!</h1>}/>
         </Routes>

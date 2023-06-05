@@ -29,7 +29,7 @@ function Accordion({ data }) {
             title = data.name
             content1 = data.description
             content2 = data.category[0].name
-            content3 = data.isSignedOut.toString()
+            content3 = data.isSignedOut ? 'Signed Out' : 'Available'
             list1 = data.signInOut
             break;
         case 'Department':

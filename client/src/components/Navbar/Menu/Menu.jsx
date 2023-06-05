@@ -23,6 +23,7 @@ function Menu() {
           menuState ? 'Open' : 'Closed'
         }`}>
         <ul className='menu-ul'>
+          <li><a className='no-link light' href="/people">People</a></li>
           <li><a className='no-link light' href="/assets">Assets</a></li>
           <li><a className='no-link light' href="/departments">Departments</a></li>
         </ul>
