@@ -6,9 +6,9 @@ Hides menu on pageload
     position: absolute;
     right: -200px;
     top: 0;
-    padding: 1rem;
+    padding: 2.2rem;
     padding-top: 3rem;
-    background: var(--clr-primary-500);
+    background: var(--clr-primary-100);
     border-bottom-left-radius: 15px;
     z-index: 2;
 }
@@ -27,7 +27,7 @@ Hides menu on pageload
 
     to {
         transform: translateX(-200px);
-        box-shadow: inset 5px -5px 10px 0 var(--clr-primary-500);
+        box-shadow: inset 5px -5px 10px 0 var(--clr-accent-300);
     }
 }
 
@@ -41,7 +41,7 @@ Hides menu on pageload
 @keyframes menuClosedAnimation {
     from {
         transform: translateX(-200px);
-        box-shadow: inset 5px -5px 10px 0 var(--clr-primary-500);
+        box-shadow: inset 5px -5px 10px 0 var(--clr-accent-300);
     }
 
     to {
@@ -69,5 +69,5 @@ setup to be flexible as most common use would be links
 }
 
 #logoSvg>circle {
-    stroke: var(--clr-primary-500)
+    stroke: var(--clr-primary-300)
 }

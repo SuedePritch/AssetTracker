@@ -2,6 +2,7 @@ import React from 'react';
 import { createCanvas, loadImage } from 'canvas';
 import voca from 'voca';
 import logoImage from '../../assets/random-logo.png';
+import Button from '../Button/Button';
 
 const v = voca;
 
@@ -46,9 +47,7 @@ const QRCode = ({ qrCodeImageData, filename }) => {
     };
 
     return (
-        <button className="link-button" onClick={handleDownload}>
-            Download QR Code
-        </button>
+        <Button text="Download QR Code" onClick={handleDownload} size="small" />
     );
 };
 

@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Modal from '../../components/Modal/Modal';
 import AddAsset from '../../components/Forms/AddAsset';
 import Accordion from '../../components/Accordion/Accordion';
+import Button from '../../components/Button/Button';
 
 function Assets() {
     const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +31,9 @@ function Assets() {
         <>
             <Navbar />
             <div className='main-content'>
-                <button onClick={openModal}>Add Asset</button>
+                <div id='add-asset-button'>
+                    <Button onClick={openModal} text="Add Asset" size="medium" />
+                </div>
                 <Modal formComponent={<AddAsset />} isOpen={isOpen} onClose={closeModal} />
                 {assets.map((asset) => (
                     < Accordion data={asset} key={asset._id} />

@@ -3,8 +3,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background: var(--clr-primary-500);
-    color: var(--clr-accent-500);
+    background: var(--clr-primary-100);
+    // color: var(--clr-accent-100);
     height: var(--navbar-height);
 }
 
@@ -21,6 +21,6 @@
 }
 
 .nav-link a {
-    color: var(--clr-accent-500);
+    color: var(--clr-greyscale-1000);
     text-decoration: none;
 }

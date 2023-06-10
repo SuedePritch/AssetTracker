@@ -58,7 +58,7 @@ function Accordion({ data }) {
     };
 
     return (
-        <div className="accordion">
+        <div className={`accordion${list1.length > 0 ? ' has-list-items' : ''}`}>
 
             <div className="accordion-header" onClick={toggleAccordion}>
                 {/* left column */}

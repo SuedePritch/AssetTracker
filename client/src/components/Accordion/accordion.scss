@@ -1,26 +1,35 @@
 .accordion {
     min-width: 390px;
     margin-bottom: 0.25rem;
+    padding: 0 1rem;
+    color: var(--clr-primary-100);
 }
 
 .accordion>* {
     padding: 0.5rem;
 }
 
+
+
 .accordion-header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0.25rem;
-    background: hsla(0, 0%, 0%, 0.1);
+    background: var(--clr-primary-700);
+}
+
+.has-list-items:hover .accordion-header {
+    background: var(--clr-accent-100);
 }
 
 .accordion-list1 {
+    background: var(--clr-accent-300);
     list-style: none;
 }
 
 .accordion-list1 li::before {
     content: "• ";
-    color: black;
+    color: var(--clr-accent-100);
     font-size: large;
 
 }
@@ -38,7 +47,7 @@
 
 .smalltext {
     font-size: 0.8em;
-    font-style: italic;
+    // font-style: italic;
 }
 
 .text-align-right {
